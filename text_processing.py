@@ -18,5 +18,5 @@ def text_processing(sentence):
     
     return sentence
 
-sentence = "This is a test sentence to check if this is working correctly."
-print(text_processing(sentence))
+#sentence = "This is a test sentence to check if this is working correctly."
+#print(text_processing(sentence))
