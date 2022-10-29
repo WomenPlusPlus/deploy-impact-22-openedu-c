@@ -19,7 +19,7 @@ def update_similarity_table():
     """
     
     PREPROCESS = TRUE
-    METHOD = "CROSS_ENCODER" # choose between BI_ENCODER, CROSS_ENCODER and TF_IDF
+    METHOD = "TF_IDF" # choose between BI_ENCODER, CROSS_ENCODER and TF_IDF
 
     # query the text information of all projects
     engine = sa.create_engine('postgresql://deploy_impact:AVNS_tEdPMnvmmI0knrjJe-R@deploy-impact-cg-chrisg-demo.aivencloud.com:24947/openedu')
@@ -47,7 +47,10 @@ def update_similarity_table():
         similarities = gs.get_similarities_using_cross_encoder(df_text)
 
     elif METHOD == "TF_IDF":
-        similarities = gs.get_similarties_using_tf_idf(df_text)
+        similarities = gs.get_similarities_using_tf_idf(df_text)
+
+    else: 
+        print("ERROR: Method isnt't specified correctly.")
     
     print(similarities)
     

@@ -3,6 +3,8 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
+import pandas as pd
+
 
 # from text_processing import text_processing
 
@@ -37,15 +39,13 @@ def get_similarities_using_tf_idf(df_text):
     # https://drive.google.com/file/d/1OlJ7unCNCNAqNWSjQWlYDc3lXasjL_gn/view)
 
     tv = TfidfVectorizer(min_df=0., max_df=1., norm='l2', use_idf=True)
-    tv_matrix = tv.fit_transform(norm_corpus)
+    tv_matrix = tv.fit_transform(df_text)
     tv_matrix = tv_matrix.toarray()
 
     vocab = tv.get_feature_names_out()
-    pd.DataFrame(np.round(tv_matrix, 2), columns=vocab)
-    # not done yet ...
+    # print(pd.DataFrame(np.round(tv_matrix, 2), columns=vocab))
 
-    similarities = np.zeros((n, n))
+    similarities = cosine_similarity(tv_matrix)
 
-
-    return similarity_score
+    return similarities
 
