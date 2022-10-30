@@ -1,9 +1,12 @@
 from pickle import TRUE
+from plot_similarties import plot_similarities
 import sqlalchemy as sa
 import pandas as pd
 import numpy as np
 from pre_process_text import pre_process_text
 import get_similarities as gs
+# import os
+# os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # psycopg2
 
@@ -18,8 +21,21 @@ def update_similarity_table():
     entire text corpus
     """
     
-    PREPROCESS = TRUE
-    METHOD = "TF_IDF" # choose between BI_ENCODER, CROSS_ENCODER and TF_IDF
+    COMPUTE_SIMILARITIES = True
+    PREPROCESS = True
+    METHOD = "BI_ENCODER" # choose between BI_ENCODER, CROSS_ENCODER and TF_IDF
+
+    LOAD_SIMILARITIES = False
+    LOAD_NAME = "similarities_TF_IDF.txt"
+
+    SAVE_SIMILARITIES = True
+    SAVE_NAME = "similarities_" + METHOD + ".txt"
+
+    PLOT = True
+
+    if COMPUTE_SIMILARITIES == LOAD_SIMILARITIES:
+        print("ERROR: either compute or load similarities.")
+        exit()
 
     # query the text information of all projects
     engine = sa.create_engine('postgresql://deploy_impact:AVNS_tEdPMnvmmI0knrjJe-R@deploy-impact-cg-chrisg-demo.aivencloud.com:24947/openedu')
@@ -32,27 +48,48 @@ def update_similarity_table():
 
     n = len(df_text)
 
-    if PREPROCESS: 
-        for i in range(n):
-            df_text.iloc[i] = pre_process_text(df_text.iloc[i])
+    if COMPUTE_SIMILARITIES:
+        if PREPROCESS: 
+            print("pre-processing-text...")
+            for i in range(n):
+                df_text.iloc[i] = pre_process_text(df_text.iloc[i])
 
 
-    # compare each text with eachother for similarities and store the value in the table
-    similarities = np.zeros((n, n))
+        # compare each text with eachother for similarities and store the value in the table
+        similarities = np.zeros((n, n))
+        print("computing similarities using method " + METHOD + "...")
 
-    if METHOD == "BI_ENCODER":
-        similarities = gs.get_similarities_using_bi_encoder(df_text)
+
+        if METHOD == "BI_ENCODER":
+            similarities = gs.get_similarities_using_bi_encoder(df_text)
+        
+        elif METHOD == "CROSS_ENCODER":
+            "You chose the CROSS_ENCODER. This will take a while. Be patient!"
+            similarities = gs.get_similarities_using_cross_encoder(df_text)
+
+        elif METHOD == "TF_IDF":
+            similarities = gs.get_similarities_using_tf_idf(df_text)
+
+        else: 
+            print("ERROR: Method isn't specified correctly.")
+            print(METHOD)
+            exit()
     
-    elif METHOD == "CROSS_ENCODER":
-        similarities = gs.get_similarities_using_cross_encoder(df_text)
+    if LOAD_SIMILARITIES:
+        print("loading file: " + LOAD_NAME)
+        similarities = np.loadtxt(LOAD_NAME)
 
-    elif METHOD == "TF_IDF":
-        similarities = gs.get_similarities_using_tf_idf(df_text)
-
-    else: 
-        print("ERROR: Method isnt't specified correctly.")
-    
     print(similarities)
+
+    if SAVE_SIMILARITIES:
+        print("saving similarity matrix in file: " + SAVE_NAME + "...")
+        np.savetxt(SAVE_NAME, similarities)
+        print("done")
+    
+
+    if PLOT:
+        print("creating the plot...")
+        plot_similarities(similarities, df_1["title_en"])
     
     # update the table in the database
 
