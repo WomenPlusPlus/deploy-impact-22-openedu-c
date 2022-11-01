@@ -5,6 +5,8 @@ import pandas as pd
 import numpy as np
 from pre_process_text import pre_process_text
 import get_similarities as gs
+import json
+
 # import os
 # os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -21,15 +23,13 @@ def update_similarity_table():
     entire text corpus
     """
     
-    COMPUTE_SIMILARITIES = True
+    COMPUTE_SIMILARITIES = False
     PREPROCESS = True
     METHOD = "BI_ENCODER" # choose between BI_ENCODER, CROSS_ENCODER and TF_IDF
 
-    LOAD_SIMILARITIES = False
-    LOAD_NAME = "similarities_TF_IDF.txt"
+    LOAD_SIMILARITIES = True
 
     SAVE_SIMILARITIES = True
-    SAVE_NAME = "similarities_" + METHOD + ".txt"
 
     PLOT = True
 
@@ -52,7 +52,7 @@ def update_similarity_table():
         if PREPROCESS: 
             print("pre-processing-text...")
             for i in range(n):
-                df_text.iloc[i] = pre_process_text(df_text.iloc[i])
+                df_text.iloc[i] = pre_process_text(df_text.iloc[i], METHOD)
 
 
         # compare each text with eachother for similarities and store the value in the table
@@ -76,14 +76,17 @@ def update_similarity_table():
             exit()
     
     if LOAD_SIMILARITIES:
-        print("loading file: " + LOAD_NAME)
-        similarities = np.loadtxt(LOAD_NAME)
-
-    print(similarities)
+        print("loading file: similarities.json")
+        f = open("similarities.json")
+        similarities = np.asarray(json.load(f))
+        print(similarities)
 
     if SAVE_SIMILARITIES:
-        print("saving similarity matrix in file: " + SAVE_NAME + "...")
-        np.savetxt(SAVE_NAME, similarities)
+        print("saving similarity matrix in similarities.json")
+        json_string = json.dumps(np.ndarray.tolist(similarities))
+        file = open("similarities.json", "w")
+        file.write(json_string)
+        file.close()
         print("done")
     
 
