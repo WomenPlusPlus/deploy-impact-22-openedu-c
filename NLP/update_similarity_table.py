@@ -31,7 +31,9 @@ def update_similarity_table():
 
     SAVE_SIMILARITIES = True
 
-    PLOT = True
+    UPDATE_DATABASE = True #this will overwrite the related project table in the database
+
+    PLOT = False
 
     if COMPUTE_SIMILARITIES == LOAD_SIMILARITIES:
         print("ERROR: either compute or load similarities.")
@@ -94,7 +96,21 @@ def update_similarity_table():
         print("creating the plot...")
         plot_similarities(similarities, df_1["title_en"])
     
-    # update the table in the database
+    if UPDATE_DATABASE:
+        print("updating database...")
+        # TODO: delete the outdated table
+        n_related = 3
+        # update the table in the database
+        for i in range(n):
+            list_to_sort = np.zeros((n, 2))
+            list_to_sort[:,0] = range(n)
+            list_to_sort[:,1] = similarities[:,i]
+            list_to_sort[i,1] = 0 #setting from 1 to 0 because we want to exclude the project itself
+            sorted_list = list_to_sort[list_to_sort[:, 1].argsort()]
+            related = sorted_list[n:n-n_related-1:-1,0].astype(int)
+            print("project " + str(i) + ": " + str(related))
+
+            # TODO: insert related projects for each project
 
 
 update_similarity_table()

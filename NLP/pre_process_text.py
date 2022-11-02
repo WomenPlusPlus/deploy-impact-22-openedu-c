@@ -4,11 +4,15 @@ nltk.download('punkt')
 
 import re
 
-def pre_process_text(doc):
+def pre_process_text(doc, method):
     stop_words = nltk.corpus.stopwords.words('english')
 
     # lower case and remove special characters\whitespaces
     doc = re.sub(r'[^a-zA-Z\s]', '', doc, flags=re.I|re.A) # [^a-zA-Z\s] => remove any digits, special characters, symbols etc.
+    if method == "TF_IDF":
+        # include stemming
+        # TODO
+        pass
     doc = doc.lower()
     doc = doc.strip()
     # tokenize document
