@@ -23,11 +23,11 @@ def update_similarity_table():
     entire text corpus
     """
     
-    COMPUTE_SIMILARITIES = False
+    COMPUTE_SIMILARITIES = True
     PREPROCESS = True
     METHOD = "BI_ENCODER" # choose between BI_ENCODER, CROSS_ENCODER and TF_IDF
 
-    LOAD_SIMILARITIES = True
+    LOAD_SIMILARITIES = False
 
     SAVE_SIMILARITIES = True
 
