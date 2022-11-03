@@ -6,7 +6,7 @@ import numpy as np
 from pre_process_text import pre_process_text
 import get_similarities as gs
 import json
-
+import datetime
 # import os
 # os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -32,7 +32,7 @@ def update_similarity_table():
 
     SAVE_SIMILARITIES = True
 
-    UPDATE_DATABASE = True #this will overwrite the related project table in the database
+    UPDATE_DATABASE = True #this will overwrite the related project table in the new database
 
     PLOT = False
 
@@ -42,7 +42,10 @@ def update_similarity_table():
 
     # query the text information of all projects
     if LOAD_FROM_NEW_DB:
-        # TODO
+        engine = sa.create_engine(
+            'postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
+        df = pd.read_sql_query('SELECT title, description FROM edu_data_edumaterial', engine)
+        df_text = df.apply(' '.join, axis=1)
         pass
     else:
         engine = sa.create_engine('postgresql://deploy_impact:AVNS_tEdPMnvmmI0knrjJe-R@deploy-impact-cg-chrisg-demo.aivencloud.com:24947/openedu')
@@ -99,10 +102,15 @@ def update_similarity_table():
     
     if UPDATE_DATABASE:
         print("updating database...")
-        # TODO: delete the outdated table
+        # TODO: delete the outdated table ???  NOOO!
+
         n_related = 3
         # update the table in the database
         # TODO connect to the server
+        engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
+
+        df_related = pd.read_sql_query('SELECT * FROM edu_data_relatedprojects', con=engine)
+        df_related.drop('id', axis=1, inplace=True)
 
         for i in range(n):
             list_to_sort = np.zeros((n, 2))
@@ -112,8 +120,14 @@ def update_similarity_table():
             sorted_list = list_to_sort[list_to_sort[:, 1].argsort()]
             related = sorted_list[n:n-n_related-1:-1,0].astype(int)
             print("project " + str(i) + ": " + str(related))
+            json_string = json.dumps(np.ndarray.tolist(related))
 
-            # TODO: insert related projects for each project
+            #df_related.loc[:,['similarity', 'edumaterial_id']] = [json_string, i]
+            df_related = df_related.append({'similarity': json_string, "edumaterial_id": i, "date" : datetime.datetime.now()}, ignore_index=True)
+
+
+
+        df_related.to_sql('edu_data_relatedprojects', con=engine, if_exists='replace')
 
 
 update_similarity_table()
