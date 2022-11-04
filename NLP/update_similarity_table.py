@@ -36,6 +36,11 @@ def update_similarity_table():
 
     PLOT = False
 
+    if COMPUTE_SIMILARITIES == False and UPDATE_DATABASE == True:
+        print("ERROR: We can not update the database because we don't have the ids of the projects")
+        exit()
+
+
     if COMPUTE_SIMILARITIES == LOAD_SIMILARITIES:
         print("ERROR: either compute or load similarities.")
         exit()
@@ -46,11 +51,17 @@ def update_similarity_table():
             'postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
         df = pd.read_sql_query('SELECT title, description FROM edu_data_edumaterial', engine)
         df_text = df.apply(' '.join, axis=1)
-        pass
+        df_id_sito = pd.read_sql_query('SELECT id FROM edu_data_edumaterial', con=engine)
+        #print(df_id_sito)
+
+
     else:
         engine = sa.create_engine('postgresql://deploy_impact:AVNS_tEdPMnvmmI0knrjJe-R@deploy-impact-cg-chrisg-demo.aivencloud.com:24947/openedu')
         df = pd.read_sql_query('SELECT title_en, subtitle_en, short_description_en FROM sito_project', engine) 
         df_text = df.apply(' '.join, axis=1)
+        df_id_sito = pd.read_sql_query('SELECT id FROM sito_project', con=engine)
+        #print(df_id_sito)
+
 
     n = len(df_text)
 
@@ -102,31 +113,35 @@ def update_similarity_table():
     
     if UPDATE_DATABASE:
         print("updating database...")
-        # TODO: delete the outdated table ???  NOOO!
 
         n_related = 3
-        # update the table in the database
-        # TODO connect to the server
+
         engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
 
         df_related = pd.read_sql_query('SELECT * FROM edu_data_relatedprojects', con=engine)
         df_related.drop('id', axis=1, inplace=True)
 
+        #engine_old = sa.create_engine('postgresql://deploy_impact:AVNS_tEdPMnvmmI0knrjJe-R@deploy-impact-cg-chrisg-demo.aivencloud.com:24947/openedu')
+
+
+
         for i in range(n):
             list_to_sort = np.zeros((n, 2))
-            list_to_sort[:,0] = range(n)
+            list_to_sort[:,0] = df_id_sito.id.values
             list_to_sort[:,1] = similarities[:,i]
             list_to_sort[i,1] = 0 #setting from 1 to 0 because we want to exclude the project itself
             sorted_list = list_to_sort[list_to_sort[:, 1].argsort()]
+            #print(list_to_sort)
+            #print(sorted_list)
             related = sorted_list[n:n-n_related-1:-1,0].astype(int)
             print("project " + str(i) + ": " + str(related))
             json_string = json.dumps(np.ndarray.tolist(related))
 
+
             #df_related.loc[:,['similarity', 'edumaterial_id']] = [json_string, i]
-            df_related = df_related.append({'similarity': json_string, "edumaterial_id": i, "date" : datetime.datetime.now()}, ignore_index=True)
+            df_related = df_related.append({'similarity': json_string, "edumaterial_id": df_id_sito['id'].iloc[i], "date" : datetime.datetime.now()}, ignore_index=True)
 
-
-
+        df_related.index.name = 'id'
         df_related.to_sql('edu_data_relatedprojects', con=engine, if_exists='replace')
 
 
