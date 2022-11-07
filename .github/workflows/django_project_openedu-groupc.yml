@@ -12,6 +12,7 @@ on:
 
 env:
   DB_PASSWORD: $
+  DJANGO_SECRET_KEY: $
 
 jobs:
   build:
