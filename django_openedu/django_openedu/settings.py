@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # include any new apps that are created for making the connection to the webpage
-    "whitenoise.runserver_nostatic"
+    #"whitenoise.runserver_nostatic"
     'edu_data'
 ]
 
