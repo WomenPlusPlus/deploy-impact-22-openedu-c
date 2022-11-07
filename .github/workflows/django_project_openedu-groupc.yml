@@ -31,6 +31,9 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Collect static
+        run: python manage.py collectstatic
+      
       - name: Run tests
         run: python manage.py test
       
@@ -54,7 +57,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-          path: 'django_openedu/'
+          path: ./django_openedu/
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
