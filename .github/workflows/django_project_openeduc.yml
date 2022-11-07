@@ -10,6 +10,10 @@ on:
       - django_project
   workflow_dispatch:
 
+env:
+  DB_PASSWORD: $
+  DJANGO_SECRET_KEY: $
+  
 jobs:
   build:
     runs-on: ubuntu-latest
