@@ -31,8 +31,8 @@ jobs:
         run: pip install -r django_openedu/requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      - name: Collect static
-        run: python django_openedu/manage.py collectstatic
+      #- name: Collect static
+      #  run: python django_openedu/manage.py collectstatic
       
       - name: Run tests
         run: python django_openedu/manage.py test
