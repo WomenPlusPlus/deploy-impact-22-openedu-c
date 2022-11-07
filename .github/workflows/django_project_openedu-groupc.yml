@@ -35,7 +35,7 @@ jobs:
         run: python django_openedu/manage.py collectstatic
       
       - name: Run tests
-        run: python django_openedu/manage.py test
+        run: python django_openedu/manage.py runserver
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
