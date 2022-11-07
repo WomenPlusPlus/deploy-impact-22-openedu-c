@@ -9,8 +9,9 @@ on:
     branches:
       - django_project
   workflow_dispatch:
+
 env:
-  DB_PASSWORD:$
+  DB_PASSWORD: $
 
 jobs:
   build:
