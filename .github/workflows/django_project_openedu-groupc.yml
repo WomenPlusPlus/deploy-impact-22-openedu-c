@@ -8,7 +8,7 @@ on:
   push:
     branches:
       - django_project
-  workflow_dispatch:
+  #workflow_dispatch:
 
 jobs:
   build:
