@@ -10,6 +10,9 @@ on:
       - django_project
   workflow_dispatch:
 
+env:
+  DB_PASSWORD: $
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -57,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-          path: ./django_openedu/
+          path: django_openedu/
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
