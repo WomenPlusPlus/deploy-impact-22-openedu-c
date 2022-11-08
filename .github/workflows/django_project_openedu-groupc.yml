@@ -14,8 +14,8 @@ env:
   DB_PASSWORD: $
   DJANGO_SECRET_KEY: $
   DISABLE_COLLECTSTATIC : $
-  AZURE_WEBAPP_NAME: 'openedu-groupc'
-  AZURE_WEBAPP_PACKAGE_PATH: './django_openedu/'
+  AZURE_WEBAPP_NAME: $
+  AZURE_WEBAPP_PACKAGE_PATH: $
 
 jobs:
   build:
