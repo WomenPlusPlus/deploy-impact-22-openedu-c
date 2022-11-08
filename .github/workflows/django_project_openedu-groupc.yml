@@ -73,12 +73,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          path: '.'
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-           app-name: ${{ env.AZURE_WEBAPP_NAME }}
+           app-name: 'openedu-groupc'
            slot-name: 'Production'
            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F3C91FA29DE94F50A3E77F1147D6AF18 }}
