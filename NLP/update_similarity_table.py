@@ -101,11 +101,12 @@ def update_similarity_table():
     if SAVE_SIMILARITIES:
         print("saving similarity matrix in similarities.json")
         json_string = json.dumps(np.ndarray.tolist(similarities))
-        file = open("similarities.json", "w")
+        file = open("NLP/similarities.json", "w")
         file.write(json_string)
         file.close()
-        print("done")
-    
+        print("saving similarity matrix in similarities.csv")
+        np.savetxt("NLP/similarities.csv", similarities, delimiter=",")
+        print("done saving.")
 
     if PLOT:
         print("creating the plot...")
