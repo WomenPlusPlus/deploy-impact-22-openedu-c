@@ -18,8 +18,8 @@ def get_similarities_using_bi_encoder(df_text, df_id):
     ids = df_id.to_numpy()
     print(sentence_emb.shape)
     print(ids.shape)
-    sentence_emb.tofile("NLP/embedings.npy")
-    ids.tofile("NLP/ids.npy")
+    np.save("NLP/embeddings", sentence_emb)
+    np.save("NLP/ids", ids)
 
     # Cosine Similarity
     similarity_score = cosine_similarity(sentence_emb)
