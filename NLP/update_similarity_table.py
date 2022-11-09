@@ -51,17 +51,15 @@ def update_similarity_table():
             'postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
         df = pd.read_sql_query('SELECT title, description FROM edu_data_edumaterial', engine)
         df_text = df.apply(' '.join, axis=1)
-        df_id_sito = pd.read_sql_query('SELECT id FROM edu_data_edumaterial', con=engine)
-        #print(df_id_sito)
-
+        df_id = pd.read_sql_query('SELECT id, title FROM edu_data_edumaterial', con=engine) #without title the ids were sorted.
+        df_id = df_id.drop(['title'], axis=1)
 
     else:
         engine = sa.create_engine('postgresql://deploy_impact:AVNS_tEdPMnvmmI0knrjJe-R@deploy-impact-cg-chrisg-demo.aivencloud.com:24947/openedu')
         df = pd.read_sql_query('SELECT title_en, subtitle_en, short_description_en FROM sito_project', engine) 
         df_text = df.apply(' '.join, axis=1)
-        df_id_sito = pd.read_sql_query('SELECT id FROM sito_project', con=engine)
-        #print(df_id_sito)
-
+        df_id = pd.read_sql_query('SELECT id, title FROM sito_project', con=engine)
+        df_id = df_id.drop(['title'], axis=1)
 
     n = len(df_text)
 
@@ -78,7 +76,7 @@ def update_similarity_table():
 
 
         if METHOD == "BI_ENCODER":
-            similarities = gs.get_similarities_using_bi_encoder(df_text)
+            similarities = gs.get_similarities_using_bi_encoder(df_text, df_id)
         
         elif METHOD == "CROSS_ENCODER":
             "You chose the CROSS_ENCODER. This will take a while. Be patient!"
@@ -110,7 +108,11 @@ def update_similarity_table():
 
     if PLOT:
         print("creating the plot...")
-        plot_similarities(similarities, df_1["title_en"])
+        if LOAD_FROM_NEW_DB:    
+            plot_similarities(similarities, df["title"])
+        else:
+            plot_similarities(similarities, df["title_en"])
+
     
     if UPDATE_DATABASE:
         print("updating database...")
@@ -128,7 +130,7 @@ def update_similarity_table():
 
         for i in range(n):
             list_to_sort = np.zeros((n, 2))
-            list_to_sort[:,0] = df_id_sito.id.values
+            list_to_sort[:,0] = df_id.id.values
             list_to_sort[:,1] = similarities[:,i]
             list_to_sort[i,1] = 0 #setting from 1 to 0 because we want to exclude the project itself
             sorted_list = list_to_sort[list_to_sort[:, 1].argsort()]
@@ -140,7 +142,7 @@ def update_similarity_table():
 
 
             #df_related.loc[:,['similarity', 'edumaterial_id']] = [json_string, i]
-            df_related = df_related.append({'similarity': json_string, "edumaterial_id": df_id_sito['id'].iloc[i], "date" : datetime.datetime.now()}, ignore_index=True)
+            df_related = df_related.append({'similarity': json_string, "edumaterial_id": df_id['id'].iloc[i], "date" : datetime.datetime.now()}, ignore_index=True)
 
         df_related.index.name = 'id'
         df_related.to_sql('edu_data_relatedprojects', con=engine, if_exists='replace')

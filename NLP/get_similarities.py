@@ -8,13 +8,18 @@ import pandas as pd
 
 # from text_processing import text_processing
 
-def get_similarities_using_bi_encoder(df_text):
+def get_similarities_using_bi_encoder(df_text, df_id):
     # https://towardsdatascience.com/semantic-textual-similarity-83b3ca4a840e
 
     # Load the pre-trained model
     model = SentenceTransformer('stsb-mpnet-base-v2')
     # Generate Embeddings
     sentence_emb = model.encode(df_text, show_progress_bar=True)
+    ids = df_id.to_numpy()
+    print(sentence_emb.shape)
+    print(ids.shape)
+    sentence_emb.tofile("NLP/embedings.npy")
+    ids.tofile("NLP/ids.npy")
 
     # Cosine Similarity
     similarity_score = cosine_similarity(sentence_emb)
