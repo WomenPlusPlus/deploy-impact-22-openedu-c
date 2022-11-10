@@ -26,6 +26,16 @@ def semantic_search(search_key):
     similarity_score = cosine_similarity(project_embeddings, search_key_embedding)
 
     # find ids where similarity score is larger than thresshold
-    related_ids = ids where similarity_score > threshold
+    n = len(similarity_score)
+    list_to_sort = np.concatenate((ids, similarity_score), axis=1)
+    sorted_list = np.flip(list_to_sort[list_to_sort[:, 1].argsort()],axis=0)
+    related_ids = sorted_list[sorted_list[:,1]>threshold,0].astype(int)
 
     return related_ids
+
+search_keys_test = ["Science Competition", "language", "encyclopedia", "database", \
+    "travel", "school", "medicine", "university", "research", "jungle", "kitchen", \
+    "rain", "elephant", "grass", "cars", "sun", "children", "chair"]
+for i in search_keys_test:
+    print(i)
+    print(semantic_search(i))
