@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 # import the models to be able to access the data and get the context
-from .models import EduMaterial, RelatedProjects, Topics, MaterialType
+from .models import EduMaterial, RelatedProjects, Topics, MaterialType, EduMaterial_topics, EduMaterial_materialtype
 from django.db.models import Q  # required for making more than one query
 # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/query_relatedtool.html
 
@@ -8,11 +8,15 @@ from django.db.models import Q  # required for making more than one query
 # Create your views here.
 # CRUD - create retrieve update delete
 
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
 # create a view to retrieve all the educational material.
 # with a function_base_view from django, which take a request and shows data in someway
 def edumaterial_list_view(request):
     edu_materials = EduMaterial.objects.all()
     categories = Topics.objects.all()
+    print(categories)
     formats = MaterialType.objects.all()
     context = {
         'edu_materials': edu_materials,
@@ -51,6 +55,57 @@ def search(request):
         print(results)
         dic_count = {project.title: project.title.lower().count(query.lower()) + project.description.lower().count(query.lower()) for project in results}
         print(dic_count)
+        # If query is either in title or in description then get the results
+    return render(request, 'edumaterial/search.html', {'query': query,
+
+                                                       'results': results})
+def search_filter(request):
+    query = None
+    results = []
+    categories = Topics.objects.all()
+    if request.method == "GET":
+        query = request.GET.get('search')  # where GET is the method used in th html file when creating the form
+        # if is_valid_queryparam(query):
+        results = EduMaterial.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query))
+
+        category = request.GET.get('category')
+        format = request.GET.get('materialformat')
+        # print(format)
+        if is_valid_queryparam(category) and category != 'Choose...':
+            ids = EduMaterial_topics.objects.filter(topics__exact=category).values_list('edumaterial',
+                                                                                        flat=True)
+            results = results.filter(id__in=ids)
+            #qs = Topics.filter(categories__name=category).id
+        if is_valid_queryparam(format) and format != 'Choose...':
+            ids = EduMaterial_materialtype.objects.filter(materialtype__exact=format).values_list('edumaterial',flat=True)
+            results = results.filter(id__in=ids)
+
+        # If query is either in title or in description then get the results
+    return render(request, 'edumaterial/search.html', {'query': query,
+                                                       'results': results})
+
+
+def search_NLP(request):
+    query = None
+    results = []
+    categories = Topics.objects.all()
+    if request.method == "GET":
+        query = request.GET.get('search')  # where GET is the method used in th html file when creating the form
+        # if is_valid_queryparam(query):
+        results = EduMaterial.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query))
+
+        category = request.GET.get('category')
+        format = request.GET.get('materialformat')
+        # print(format)
+        if is_valid_queryparam(category) and category != 'Choose...':
+            pass
+            #qs = Topics.filter(categories__name=category).id
+        if is_valid_queryparam(format) and format != 'Choose...':
+            ids = EduMaterial_materialtype.objects.filter(materialtype__exact=format).values_list('edumaterial',flat=True)
+            results = results.filter(id__in=ids)
+
         # If query is either in title or in description then get the results
     return render(request, 'edumaterial/search.html', {'query': query,
                                                        'results': results})

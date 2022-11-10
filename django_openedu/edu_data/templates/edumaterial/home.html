@@ -27,16 +27,16 @@
                 <select id="category" class="form-control" name="category">
                   <option selected>Choose...</option>
                   {% for cat in categories %}
-                  <option value="{{ cat }}">{{ cat.name }}</option>
+                    <option name="{{ cat.categories }}" value="{{ cat.pk }}">{{ cat.categories }}</option>
                   {% endfor %}
                 </select>
             </div>
                 <div class="form-group col-md-4">
-                <label for="category">Material type</label>
-                <select id="category" class="form-control" name="materialformat">
+                <label for="materialformat">Material type</label>
+                <select id="materialformat" class="form-control" name="materialformat">
                   <option selected>Choose...</option>
                   {% for format in formats %}
-                  <option value="{{ cat }}">{{ format.name }}</option>
+                    <option name="{{ format.name }}" value="{{ format.pk }}">{{ format.name }}</option>
                   {% endfor %}
                 </select>
             </div>
