@@ -1,6 +1,8 @@
 import numpy as np  
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+import sqlalchemy as sa
+import pandas as pd
 
 def semantic_search(search_key):
     """
@@ -8,11 +10,26 @@ def semantic_search(search_key):
     Return argument: ids - a list of project id's that need will be displayed to user
     """ 
     threshold = 0.25
-    path_embeddings = "NLP/embeddings.npy"
-    path_ids = "NLP/ids.npy"
-    # loading the embeddings and the ids from binary file
-    project_embeddings = np.load(path_embeddings, allow_pickle=True)
-    ids = np.load(path_ids, allow_pickle=True)
+
+    LOADING_METHOD = "NPY_FILES" # NPY_FILES or DATABASE
+
+    if LOADING_METHOD == "NPY_FILES": 
+        # loading the embeddings and the ids from binary file
+        path_embeddings = "NLP/embeddings.npy"
+        path_ids = "NLP/ids.npy"
+        project_embeddings = np.load(path_embeddings, allow_pickle=True)
+        ids = np.load(path_ids, allow_pickle=True)
+
+    elif LOADING_METHOD == "DATABASE":
+        engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
+        df_id = pd.read_sql_query('SELECT id, title FROM edu_data_edumaterial', con=engine) #without title the ids were sorted.
+        ids = df_id.drop(['title'], axis=1).to_numpy()
+        df_emb = pd.read_sql_query('SELECT * FROM edu_data_embeddings', con=engine) 
+        # TODO iterate and convert jsonb to numpy array of shape (32, 768)
+
+    else:
+        print("Cannot load embeddings. Choose a correct loading method.")
+        exit()
 
     # Load the pre-trained model
     model = SentenceTransformer('stsb-mpnet-base-v2')
