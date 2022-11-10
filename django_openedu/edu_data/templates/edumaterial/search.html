@@ -16,7 +16,7 @@
     </div>
     <div class="container">
         {% if query %} <!-- if there is a return query from the search, a match-->
-        <h1>Posts containing "{{ query }}"</h1>
+        <h1>Projects containing "{{ query }}"</h1>
            <h3>
              {% with results.count as total_results %} <!--this returns the total of results-->
                 Found {{ total_results }} result{{ total_results|pluralize }}
