@@ -139,10 +139,8 @@ def update_similarity_table():
             related = sorted_list[n:n-n_related-1:-1,0].astype(int)
             print("project " + str(i) + ": " + str(related))
             json_string = json.dumps(np.ndarray.tolist(related))
-
-
-            #df_related.loc[:,['similarity', 'edumaterial_id']] = [json_string, i]
-            df_related = df_related.append({'similarity': json_string, "edumaterial_id": df_id['id'].iloc[i], "date" : datetime.datetime.now()}, ignore_index=True)
+            df_new_row = pd.DataFrame.from_dict([{'similarity': json_string, "edumaterial_id": df_id['id'].iloc[i], "date" : datetime.datetime.now()}])
+            df_related = pd.concat([df_related, df_new_row], axis=0, ignore_index=True)
 
         df_related.index.name = 'id'
         df_related.to_sql('edu_data_relatedprojects', con=engine, if_exists='replace')
