@@ -102,8 +102,8 @@ def search_NLP(request):
     if request.method == "GET":
 
         query = request.GET.get('search')  # where GET is the method used in th html file when creating the form
-        if is_valid_queryparam(search):
-            pass
+        #if is_valid_queryparam(search):
+            #pass
             # TODO make an if for returning a text if no word is given in the search
         ids = semantic_search(query)
         results = EduMaterial.objects.filter(id__in=ids)
