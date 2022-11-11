@@ -3,6 +3,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import sqlalchemy as sa
 import pandas as pd
+import json
 
 def semantic_search(search_key):
     """
@@ -11,7 +12,7 @@ def semantic_search(search_key):
     """ 
     threshold = 0.25
 
-    LOADING_METHOD = "NPY_FILES" # NPY_FILES or DATABASE
+    LOADING_METHOD = "DATABASE" # NPY_FILES or DATABASE
 
     if LOADING_METHOD == "NPY_FILES": 
         # loading the embeddings and the ids from binary file
@@ -22,10 +23,15 @@ def semantic_search(search_key):
 
     elif LOADING_METHOD == "DATABASE":
         engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
-        df_id = pd.read_sql_query('SELECT id, title FROM edu_data_edumaterial', con=engine) #without title the ids were sorted.
-        ids = df_id.drop(['title'], axis=1).to_numpy()
-        df_emb = pd.read_sql_query('SELECT * FROM edu_data_embeddings', con=engine) 
-        # TODO iterate and convert jsonb to numpy array of shape (32, 768)
+        df_embeddings = pd.read_sql_query('SELECT * FROM edu_data_embeddings', con=engine) #without title the ids were sorted.
+        ids = df_embeddings['edumaterial_id'].to_numpy().reshape((-1,1))
+
+        data = json.loads(df_embeddings["embeding"].iloc[0])
+        # iterate through the projects and convert json to numpy array of shape (32, 768)
+        n = len(ids)
+        project_embeddings = np.zeros((n, 768))
+        for i in range(n):
+            project_embeddings[i,:] = json.loads(df_embeddings["embeding"].iloc[i]) # jsonb file -> numpy array
 
     else:
         print("Cannot load embeddings. Choose a correct loading method.")
@@ -38,12 +44,10 @@ def semantic_search(search_key):
     search_key_embedding = model.encode(search_key, show_progress_bar=False)
     search_key_embedding = search_key_embedding.reshape(1, -1)
 
-
     # compute cosine similarity
     similarity_score = cosine_similarity(project_embeddings, search_key_embedding)
 
     # find ids where similarity score is larger than thresshold
-    n = len(similarity_score)
     list_to_sort = np.concatenate((ids, similarity_score), axis=1)
     sorted_list = np.flip(list_to_sort[list_to_sort[:, 1].argsort()],axis=0)
     related_ids = sorted_list[sorted_list[:,1]>threshold,0].astype(int)

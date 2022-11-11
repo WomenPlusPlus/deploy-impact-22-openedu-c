@@ -2,8 +2,10 @@ from sentence_transformers import CrossEncoder
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+import sqlalchemy as sa
 import numpy as np
 import pandas as pd
+import json
 
 
 # from text_processing import text_processing
@@ -20,6 +22,16 @@ def get_similarities_using_bi_encoder(df_text, df_id):
     print(ids.shape)
     np.save("NLP/embeddings", sentence_emb)
     np.save("NLP/ids", ids)
+
+    engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', connect_args={"sslmode": "require"})
+    df_embeddings = pd.DataFrame()
+    for i in range(len(ids)):
+        json_file = json.dumps(sentence_emb[i,:].tolist())
+        # json_file = json.dumps(sentence_emb[i,:].tolist()).encode()
+
+        df_embeddings = df_embeddings.append({'embeding': json_file, "edumaterial_id": df_id['id'].iloc[i]}, ignore_index=True)
+    df_embeddings.index.name = 'id'
+    df_embeddings.to_sql('edu_data_embeddings', con=engine, if_exists='replace')
 
     # Cosine Similarity
     similarity_score = cosine_similarity(sentence_emb)
