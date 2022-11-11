@@ -15,7 +15,7 @@ def semantic_search(search_key):
     with all the projects. If the similarity is larger than the threshold, the
     project id is returned
     """
-    threshold = 0.25
+    threshold = 0.30
 
     engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', \
         connect_args={"sslmode": "require"})
