@@ -3,7 +3,7 @@ import sqlalchemy as sa
 import pandas as pd
 import numpy as np
 from pre_process_text import pre_process_text
-import get_similarities as gs
+from get_similarities import get_similarities_using_bi_encoder
 import json
 import datetime
 
@@ -38,7 +38,7 @@ def update_database():
     # compare each text with eachother for similarities and store the value in a n by n matrix
     similarities = np.zeros((n, n))
     print("computing similarities using SBERT model with bi-encoder...")
-    similarities = gs.get_similarities_using_bi_encoder(df_text, df_id)
+    similarities = get_similarities_using_bi_encoder(df_text, df_id)
     
     print("updating the related projects in the database...")
     n_related = 3

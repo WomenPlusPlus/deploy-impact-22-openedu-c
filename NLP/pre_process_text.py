@@ -1,8 +1,7 @@
 import nltk
+import re
 nltk.download('stopwords')
 nltk.download('punkt')
-
-import re
 
 def pre_process_text(doc):
     stop_words = nltk.corpus.stopwords.words('english')
