@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 # import the models to be able to access the data and get the context
 from .models import EduMaterial, RelatedProjects, Topics, MaterialType, EduMaterial_topics, EduMaterial_materialtype
 from django.db.models import Q  # required for making more than one query
+from semantic_search import semantic_search
+#import os
+#os.environ['KMP_DUPLICATE_LIB_OK']='True'
 # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/query_relatedtool.html
 
 
@@ -44,6 +47,21 @@ def detail_page(request, id):
     return render(request, "edumaterial/detail.html", context)  # request, template, context
 
 
+def apply_main_filters(results, request):
+    topic = request.GET.get('category')
+    mformat = request.GET.get('materialformat')
+    # print(format)
+    if is_valid_queryparam(topic) and topic != 'Choose...':
+        ids = EduMaterial_topics.objects.filter(topics__exact=topic).values_list('edumaterial',
+                                                                                 flat=True)
+        results = results.filter(id__in=ids)
+    if is_valid_queryparam(mformat) and mformat != 'Choose...':
+        ids = EduMaterial_materialtype.objects.filter(materialtype__exact=mformat).values_list('edumaterial',
+                                                                                              flat=True)
+        results = results.filter(id__in=ids)
+    return results
+
+
 def search(request):
     query = None
     results = []
@@ -56,30 +74,22 @@ def search(request):
         dic_count = {project.title: project.title.lower().count(query.lower()) + project.description.lower().count(query.lower()) for project in results}
         print(dic_count)
         # If query is either in title or in description then get the results
+
+        results = apply_main_filters(results, request)
     return render(request, 'edumaterial/search.html', {'query': query,
 
                                                        'results': results})
 def search_filter(request):
     query = None
     results = []
-    categories = Topics.objects.all()
     if request.method == "GET":
         query = request.GET.get('search')  # where GET is the method used in th html file when creating the form
         # if is_valid_queryparam(query):
         results = EduMaterial.objects.filter(
             Q(title__icontains=query) | Q(description__icontains=query))
-
-        category = request.GET.get('category')
-        format = request.GET.get('materialformat')
-        # print(format)
-        if is_valid_queryparam(category) and category != 'Choose...':
-            ids = EduMaterial_topics.objects.filter(topics__exact=category).values_list('edumaterial',
-                                                                                        flat=True)
-            results = results.filter(id__in=ids)
-            #qs = Topics.filter(categories__name=category).id
-        if is_valid_queryparam(format) and format != 'Choose...':
-            ids = EduMaterial_materialtype.objects.filter(materialtype__exact=format).values_list('edumaterial',flat=True)
-            results = results.filter(id__in=ids)
+        print(results)
+        results = apply_main_filters(results, request)
+        print(results)
 
         # If query is either in title or in description then get the results
     return render(request, 'edumaterial/search.html', {'query': query,
@@ -89,22 +99,16 @@ def search_filter(request):
 def search_NLP(request):
     query = None
     results = []
-    categories = Topics.objects.all()
     if request.method == "GET":
-        query = request.GET.get('search')  # where GET is the method used in th html file when creating the form
-        # if is_valid_queryparam(query):
-        results = EduMaterial.objects.filter(
-            Q(title__icontains=query) | Q(description__icontains=query))
 
-        category = request.GET.get('category')
-        format = request.GET.get('materialformat')
-        # print(format)
-        if is_valid_queryparam(category) and category != 'Choose...':
+        query = request.GET.get('search')  # where GET is the method used in th html file when creating the form
+        if is_valid_queryparam(search):
             pass
-            #qs = Topics.filter(categories__name=category).id
-        if is_valid_queryparam(format) and format != 'Choose...':
-            ids = EduMaterial_materialtype.objects.filter(materialtype__exact=format).values_list('edumaterial',flat=True)
-            results = results.filter(id__in=ids)
+            # TODO make an if for returning a text if no word is given in the search
+        ids = semantic_search(query)
+        results = EduMaterial.objects.filter(id__in=ids)
+
+        results = apply_main_filters(results, request)
 
         # If query is either in title or in description then get the results
     return render(request, 'edumaterial/search.html', {'query': query,

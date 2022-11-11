@@ -4,3 +4,7 @@ whitenoise
 pandas
 sqlalchemy
 python-dotenv
+numpy
+sentence_transformers
+scikit-learn
+# nomkl
