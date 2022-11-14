@@ -1,34 +1,40 @@
-import numpy as np  
+import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-import sqlalchemy as sa
 import pandas as pd
+import sqlalchemy as sa
 import json
 
-def semantic_search(search_key):
-    """
-    Argument: search_key - String with the word that the user wants to do the search
+"""
+    Arguement: search_key - String with the word that the user wants to do the search
     Return argument: ids - a list of project id's that need will be displayed to user
+"""
 
-    This function is loading the precomputed text embeddings of the projects from the 
-    database. Then the text embedding of the search key is computed using a the SBERT 
-    bi-encoder for textual similarity analysis (STS). this embedding is then compared 
-    with all the projects. If the similarity is larger than the threshold, the 
-    project id is returned
-    """ 
-    threshold = 0.25
 
-    engine = sa.create_engine('postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db', \
+def semantic_search(search_key):
+    # search_key = 'Science Competition'
+
+    # threshold = 0.25
+    # path_embeddings = "/home/claudia/Documents/women++/deploy-impact-22-openedu-c/NLP/embeddings.npy"
+    # path_ids = "/home/claudia/Documents/women++/deploy-impact-22-openedu-c/NLP/ids.npy"
+
+    # loading the embeddings and the ids from binary file
+    ##project_embeddings = np.load(path_embeddings, allow_pickle=True)
+    ##ids = np.load(path_ids, allow_pickle=True)
+
+    engine = sa.create_engine(
+        'postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db',
         connect_args={"sslmode": "require"})
-    df_embeddings = pd.read_sql_query('SELECT * FROM edu_data_embeddings', con=engine) #without title the ids were sorted.
-    ids = df_embeddings['edumaterial_id'].to_numpy().reshape((-1,1))
+    df_id = pd.read_sql_query('SELECT id, title FROM edu_data_edumaterial',
+                              con=engine)  # without title the ids were sorted.
+    ids = df_id.drop(['title'], axis=1).to_numpy()
+    df_embeddings = pd.read_sql_query('SELECT embeding FROM edu_data_embeddings', con=engine)
 
-    data = json.loads(df_embeddings["embeding"].iloc[0])
-    # iterate through the projects and convert json to numpy array of shape (32, 768)
     n = len(ids)
     project_embeddings = np.zeros((n, 768))
+
     for i in range(n):
-        project_embeddings[i,:] = json.loads(df_embeddings["embeding"].iloc[i]) # json file -> numpy array
+        project_embeddings[i:] = json.loads(df_embeddings["embeding"].iloc[i])
 
     # Load the pre-trained model
     model = SentenceTransformer('stsb-mpnet-base-v2')
@@ -41,8 +47,14 @@ def semantic_search(search_key):
     similarity_score = cosine_similarity(project_embeddings, search_key_embedding)
 
     # find ids where similarity score is larger than thresshold
-    list_to_sort = np.concatenate((ids, similarity_score), axis=1)
-    sorted_list = np.flip(list_to_sort[list_to_sort[:, 1].argsort()],axis=0)
-    related_ids = sorted_list[sorted_list[:,1]>threshold,0].astype(int)
 
-    return related_ids
+    sim_score = np.append(similarity_score, ids, axis=1)
+    # print(sim_score)
+
+    df_sim_score = pd.DataFrame(sim_score, columns=['sim_score', 'id_project'])
+    # print(df_sim_score)
+
+    df1 = df_sim_score.sort_values(by="sim_score", ascending=False)
+    related_project = df1.query('sim_score > 0.30')['id_project']
+
+    return (related_project)
