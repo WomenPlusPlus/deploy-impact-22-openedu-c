@@ -6,3 +6,5 @@ Repository for Team openedu-c for deploy(impact) 2022
 
 # File Structure
 
+- NLP
+- django_openedu
