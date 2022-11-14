@@ -49,6 +49,6 @@ def semantic_search(search_key):
     # print(df_sim_score)
 
     df1 = df_sim_score.sort_values(by="sim_score", ascending=False)
-    related_project = df1.query('sim_score > threshold')['id_project']
+    related_project = df1.query('sim_score > {}'.format(threshold))['id_project']
 
     return (related_project)
