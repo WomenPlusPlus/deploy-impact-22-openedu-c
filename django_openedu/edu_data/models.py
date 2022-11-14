@@ -48,7 +48,7 @@ class EduMaterial(models.Model):
 
 # Model that contains the categories entries
 class Topics(models.Model):
-    categories = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
 
 # Model that contains the link between the model EduMaterial and the categories, a new model is required given that
@@ -108,3 +108,8 @@ class RelatedProjects(models.Model):
     edumaterial = models.ForeignKey(EduMaterial, on_delete=models.CASCADE, default=0)
     date = models.DateTimeField(auto_now_add=True)  # auto_now_add to include the curretn datetime
     similarity = models.JSONField(null=True)
+
+
+class embeddings(models.Model):
+    edumaterial = models.ForeignKey(EduMaterial, on_delete=models.CASCADE, default=0)
+    embeding = models.JSONField(null=True)
