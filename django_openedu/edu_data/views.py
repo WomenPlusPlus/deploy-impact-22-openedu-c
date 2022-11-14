@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # import the models to be able to access the data and get the context
 from .models import EduMaterial, RelatedProjects, Topics, MaterialType, EduMaterial_topics, EduMaterial_materialtype
 from django.db.models import Q  # required for making more than one query
-from semantic_search import semantic_search
+from ../NLP/semantic_search import semantic_search
 #import os
 #os.environ['KMP_DUPLICATE_LIB_OK']='True'
 # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/query_relatedtool.html
