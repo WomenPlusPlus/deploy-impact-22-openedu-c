@@ -1,8 +1,7 @@
 import nltk
+import re
 nltk.download('stopwords')
 nltk.download('punkt')
-
-import re
 
 def pre_process_text(doc):
     stop_words = nltk.corpus.stopwords.words('english')
@@ -19,6 +18,3 @@ def pre_process_text(doc):
     doc = ' '.join(filtered_tokens)
     return doc
 
-# sentence = "These are two test sentences to check if this is working correctly. We do this 4 social good. "
-# print(sentence)
-# print(pre_process_text(sentence))
