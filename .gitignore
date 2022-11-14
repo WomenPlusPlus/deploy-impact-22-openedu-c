@@ -161,3 +161,5 @@ cython_debug/
 
 # openedu only
 NLP/similarities_BI_ENCODER.txt
+
+.DS_store

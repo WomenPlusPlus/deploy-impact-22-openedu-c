@@ -1,1 +1,6 @@
-django~=4.1
+django
+psycopg2-binary
+whitenoise
+pandas
+sqlalchemy
+python-dotenv
