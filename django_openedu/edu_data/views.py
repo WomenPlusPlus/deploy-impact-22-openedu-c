@@ -2,7 +2,13 @@ from django.shortcuts import render, get_object_or_404
 # import the models to be able to access the data and get the context
 from .models import EduMaterial, RelatedProjects, Topics, MaterialType, EduMaterial_topics, EduMaterial_materialtype
 from django.db.models import Q  # required for making more than one query
-from ../../NLP/semantic_search import semantic_search
+import sys
+
+# this is the only way to import function from the ../../NLP folder
+# see here: https://www.geeksforgeeks.org/python-import-module-from-different-directory/
+sys.path.insert(0, '../NLP/')
+from semantic_search import semantic_search
+
 #import os
 #os.environ['KMP_DUPLICATE_LIB_OK']='True'
 # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/query_relatedtool.html
