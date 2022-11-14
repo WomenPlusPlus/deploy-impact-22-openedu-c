@@ -12,16 +12,10 @@ import json
 
 
 def semantic_search(search_key):
-    # search_key = 'Science Competition'
 
-    # threshold = 0.25
-    # path_embeddings = "/home/claudia/Documents/women++/deploy-impact-22-openedu-c/NLP/embeddings.npy"
-    # path_ids = "/home/claudia/Documents/women++/deploy-impact-22-openedu-c/NLP/ids.npy"
-
-    # loading the embeddings and the ids from binary file
-    ##project_embeddings = np.load(path_embeddings, allow_pickle=True)
-    ##ids = np.load(path_ids, allow_pickle=True)
-
+    threshold = 0.30
+    
+    # connecting to the database
     engine = sa.create_engine(
         'postgresql://django@openeduc-db:deploy-impact-2022@openeduc-db.postgres.database.azure.com:5432/openeduc-db',
         connect_args={"sslmode": "require"})
@@ -55,6 +49,6 @@ def semantic_search(search_key):
     # print(df_sim_score)
 
     df1 = df_sim_score.sort_values(by="sim_score", ascending=False)
-    related_project = df1.query('sim_score > 0.30')['id_project']
+    related_project = df1.query('sim_score > threshold')['id_project']
 
     return (related_project)
