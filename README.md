@@ -14,4 +14,8 @@ TODO: project description.
 - [doc:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/doc) Some documentation of our solution is given in this folder.
 
 # How to run and install the project
-All the final implementation of the project are written in python. The requirements.txt file contains the librarys needed for running our code
+All the final implementation of the project are written in python. The requirements.txt file contains the librarys needed for running our code.
+
+To run the dummy UI: go into the django_openedu folder and run the command "manage.py runserver" in python
+
+To update the database: go to the NLP folder and run update_database.py
