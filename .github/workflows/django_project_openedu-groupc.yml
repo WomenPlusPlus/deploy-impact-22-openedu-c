@@ -33,6 +33,7 @@ jobs:
       
       - name: Change to correct folder
         run: cd django_openedu/django_openedu
+      - run: ls
 
       - name: Create and start virtual environment
         run: |
