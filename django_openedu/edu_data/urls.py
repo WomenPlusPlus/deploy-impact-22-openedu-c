@@ -22,6 +22,6 @@ app_name = 'edu_data'  # to differentiate in the html the application used in th
 urlpatterns = [
     path('', views.edumaterial_list_view, name='home_page'),
     path('<int:id>', views.detail_page, name='detail'),  # path for going to the detail view
-    path('search/', views.search_filter, name='search'),  # names need to match the ones in the html to reference url
-    #path('search/', views.search_NLP, name='search')  # names need to match the ones in the html to reference url
+    #path('search/', views.search_filter, name='search'),  # names need to match the ones in the html to reference url
+    path('search/', views.search_NLP, name='search')  # names need to match the ones in the html to reference url
 ]
