@@ -10,7 +10,7 @@ TODO: project description.
   - pre_process_text.py: the function is called from update_database(). It prepares the text before it can be used from the NLP model.
   - get_similarities.py: the function is called from update_database(). It takes a dataframe containing all the text information of the project and uses an NLP model to calculate an n by n matrix that tells how similar the projects are.
   - semantic_search.py: this function takes a search string, computes its embedding, loads the project embeddings from the database, and returns the the projects that are related to the search-key.
-- [django_openedu:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/django_openedu) cotains the implementation of a Dummy UI to test the NLP search and related projects functions. 
+- [django_openedu:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/django_openedu) cotains the implementation of a Dummy UI to test the NLP search and related projects functions. The Dummy UI is programmed in django using python. It is connected to a PostgreSQL database running in Azure.
 - [doc:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/doc) Some documentation of our solution is given in this folder.
 
 # How to run and install the project
