@@ -9,6 +9,8 @@ on:
     branches:
       - django_project
   workflow_dispatch:
+  
+
 
 env:
   DB_PASSWORD: $
@@ -19,8 +21,12 @@ env:
   GITHUB_WORKSPACE: $
 
 jobs:
+       
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: django_openedu
 
 
     steps:
@@ -33,7 +39,7 @@ jobs:
       
       - run: ls
       - name: Change to correct folder
-        run: cd django_openedu/django_openedu/django_openedu
+        run: cd django_openedu/
       - run: ls
 
       - name: Create and start virtual environment
