@@ -84,6 +84,9 @@ jobs:
       - name: Change working directory
         run: cd django_openedu
         
+      - run: ls
+      - run: pwd
+        
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
