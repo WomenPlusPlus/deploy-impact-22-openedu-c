@@ -84,6 +84,9 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    defaults:
+      run:
+        working-directory: django_openedu
 
     steps:
       - name: Download artifact from build job
