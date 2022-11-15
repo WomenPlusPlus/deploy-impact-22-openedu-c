@@ -53,7 +53,7 @@ jobs:
         with:
           name: python-app
           path: |
-            ./django_openedu 
+            . 
             !venv/
       #- name: Building web app
       #  uses: azure/appservice-build@v2
@@ -77,7 +77,8 @@ jobs:
         with:
           name: python-app
           path: '.'
-          
+      - name: Change working directory
+        run: cd django_openedu
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
