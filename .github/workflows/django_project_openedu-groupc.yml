@@ -21,6 +21,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: django_openedu
 
     steps:
       - uses: actions/checkout@v2
@@ -36,21 +39,21 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r django_openedu/requirements.txt
+        run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Collect static
-        run: python django_openedu/manage.py collectstatic
+        run: python manage.py collectstatic
       
       - name: Run tests
-        run: python django_openedu/manage.py test
+        run: python manage.py test
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: |
-            . 
+            ./django_openedu 
             !venv/
       #- name: Building web app
       #  uses: azure/appservice-build@v2
