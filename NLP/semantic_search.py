@@ -13,7 +13,7 @@ import json
 
 def semantic_search(search_key):
 
-    threshold = 0.30
+    threshold = 0.28
     
     # connecting to the database
     engine = sa.create_engine(
