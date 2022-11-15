@@ -21,6 +21,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: django_openedu
 
     steps:
       - uses: actions/checkout@v2
@@ -30,28 +33,31 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Create and start virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate
+     # - name: Create and start virtual environment
+     #   run: |
+     #     python -m venv venv
+     #     source venv/bin/activate
       
-      - name: Install dependencies
-        run: pip install -r django_openedu/requirements.txt
+     # - name: Install dependencies
+     #   run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      - name: Collect static
-        run: python django_openedu/manage.py collectstatic
+      # - name: Collect static
+      #  run: python manage.py collectstatic
       
-      - name: Run tests
-        run: python django_openedu/manage.py test
+      # - name: Run tests
+      #  run: python manage.py test
       
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: python-app
           path: |
-            . 
+            ./django_openedu 
             !venv/
+          if-no-files-found: error
+            
+         
       #- name: Building web app
       #  uses: azure/appservice-build@v2
       #- name: Deploy web App using GH Action azure/webapps-deploy
@@ -74,11 +80,14 @@ jobs:
         with:
           name: python-app
           path: '.'
-          
+      - name: Change working directory
+        run: cd django_openedu
+        
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
+           working-directory: django_openedu
            app-name: 'openedu-groupc'
            slot-name: 'Production'
            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F3C91FA29DE94F50A3E77F1147D6AF18 }}
