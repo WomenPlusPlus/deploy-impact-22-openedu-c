@@ -80,6 +80,7 @@ jobs:
         with:
           name: python-app
           path: '.'
+          
       - name: Change working directory
         run: cd django_openedu
         
@@ -87,7 +88,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-           working-directory: django_openedu
            app-name: 'openedu-groupc'
            slot-name: 'Production'
            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F3C91FA29DE94F50A3E77F1147D6AF18 }}
