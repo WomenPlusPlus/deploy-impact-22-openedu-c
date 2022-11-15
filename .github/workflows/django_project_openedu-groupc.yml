@@ -31,8 +31,9 @@ jobs:
         with:
           python-version: '3.10'
       
+      - run: ls
       - name: Change to correct folder
-        run: cd django_openedu/django_openedu
+        run: cd django_openedu/django_openedu/django_openedu
       - run: ls
 
       - name: Create and start virtual environment
