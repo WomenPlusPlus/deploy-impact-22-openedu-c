@@ -1,9 +1,0 @@
-django
-psycopg2-binary
-whitenoise
-pandas
-sqlalchemy
-python-dotenv
-numpy
-sentence_transformers
-scikit-learn
