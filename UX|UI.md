@@ -134,7 +134,7 @@ After we define the key features, I designed the user flow of the search and fil
 ![image](https://user-images.githubusercontent.com/72688726/202749916-73034b7f-315f-48f3-9166-fe5b13cb128c.png)
 
 
-## Visual Prototype
+## [Visual Prototype](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=0%3A1&viewport=211%2C156%2C0.13&scaling=min-zoom&starting-point-node-id=5%3A22)
 
 Many users expect what they believe will interact with the product and service and therefore, making the website similar to their competitor can help users to easily navigate on the site without hesitating. In the design phase, we implemented the Mental model and design principle to reduce the cognitive loading on the web page and create pleasant experiences for the user, as well as help them to easily navigate on the website.
 
@@ -144,6 +144,7 @@ Many users expect what they believe will interact with the product and service a
   - Enlarge Search UI: make the search bar visible
   - CTA button: invite people to sign up and explore the site
   - Clear navigation: make the navigation visible to navigate users to visit different pages
+
 
 [![img](https://lh3.googleusercontent.com/97dOeRtHV7AD-R0YNz-z-SE7aBWk2fnT5W7TcoOccgvcmH31_7PtIVMWG_QuLAogYYCXhJfXtwL9bwlHBbjVEk0NgdQ4PAdADp4SC8JheTc-0Cvj5Gsg9ZgkQdL8Kfb3nFXgboVPwaXxyGoMaFrSbcmpXEk6wErgm-6disbCU2J_TlrbhU8O6H7ZGN_w6i1_)](https://www.figma.com/file/gRaDjSdaGjpapaVguTvRux/OpenEdu?node-id=5%3A22)
 
@@ -176,13 +177,9 @@ We make the uploading form simpler and divide the process into four steps, to ma
 
 Now that we had achieved the outcome. our team also design and pitch desk to support the launch of these exciting features that we have developed over the past six week.
 
- - [Figma protopye](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=211%2C156%2C0.13&scaling=min-zoom&starting-point-node-id=5%3A22)
 
 ### Reflection
 
 The purpose for this project is to provide tangible and actionable solutions for the client, although the redesign website was not required by the people, we believe having a website prototype that can visualize our solution in a feasible way is more convincing when pitching our idea, There were some flaws in the process and improvement that need to be addressed accordingly based on the data collection in the future development. 
-
-
-
 
 
