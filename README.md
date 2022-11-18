@@ -4,9 +4,10 @@ Repository for Team openedu-c for deploy(impact) 2022
 # Project Description
 TODO: project description.
 
-# Additional Document
+# Additional Documents and Souce
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
  - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
+ - [Figma](https://www.figma.com/file/gRaDjSdaGjpapaVguTvRux/OpenEdu?node-id=5%3A22&t=FF9hq4vn9oFgGKFd-1): Visual Prototype
  
 # File Structure
 - [NLP:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/NLP) This folder contains 4 python files used for related projects (similarity feature) and finding project that are related to a search-key (search feature).
