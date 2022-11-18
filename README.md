@@ -21,7 +21,7 @@ In order to maximize the user experience and provide them with an easy to use pl
 # Additional Documents and Souce
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
  - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
- - [Figma](https://www.figma.com/file/gRaDjSdaGjpapaVguTvRux/OpenEdu?node-id=5%3A22&t=FF9hq4vn9oFgGKFd-1): Visual Prototype
+ - [Figma](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=-43%2C-199%2C0.13&scaling=scale-down-width&starting-point-node-id=5%3A22): Visual Prototype
  - [Presentation](https://www.canva.com/design/DAFRclqQvVc/WA8bONken9AouR8n8UpdqQ/view?utm_content=DAFRclqQvVc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink): A canva link for viewing our pitch presentation
 
 ## Context and Main Challenge
