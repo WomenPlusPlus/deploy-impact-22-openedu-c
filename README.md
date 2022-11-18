@@ -4,6 +4,10 @@ Repository for Team openedu-c for deploy(impact) 2022
 # Project Description
 TODO: project description.
 
+# Additional Document
+ - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
+ - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
+ 
 # File Structure
 - [NLP:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/NLP) This folder contains 4 python files used for related projects (similarity feature) and finding project that are related to a search-key (search feature).
   - update_database.py: updates the related projects in the database and pre-computes the project-embeddings used for search requests. The function update_database() that should be called everytime a projects in the database is modified or added. 
