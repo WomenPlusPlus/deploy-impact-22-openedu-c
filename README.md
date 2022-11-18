@@ -2,7 +2,21 @@
 Repository for Team openedu-c for deploy(impact) 2022
 
 # Project Description
-TODO: project description.
+OpenEdu is an open education platform launched in 2020 by wikimedia CH.  
+Open education platforms allow their users to edit and integrate projects, training tools and news from the world of open education. The goal of the platform is to help educators in the orientation towards finding inspiration for new teaching methodologies or professional updating.
+We started a 6-week project on OpenEdu.ch in order to make it more effective and efficient while allowing the user to enjoy using the platform. Our main task was to propose an ontology for storing content metadata, as well as to propose a complete data architecture. The client also wanted us to review and suggest solutions for the uploading procedure. 
+Our main challenge in the first phase (discovery) phase was understanding the current OpenEdu structure and its functionalities.
+
+Once the understanding of OpenEdu was clearer and the possible areas of improvements were defined to make the platform more effective and efficient, the approach was focused on the following challenges & end user’s needs and problems:
+Usability: It is difficult for the user to find information, resources, or educational material on the website
+User experience: The Interface of the website is overloaded creating cognitive load to the end user
+Value proposition: The aim of the website does not send a clear message
+
+In order to maximize the user experience and provide them with an easy to use platform, the solutions proposed to improve the website are:
+Developed an ontology to provide the database a better structure with the intention of easing the data collection and data processing
+Optimized the Search feature of the website and the related content feature related to the search that has been done
+Maximized the user experience by reducing information on landing page and on a better way to ease the uploading process of new projects
+
 
 # Additional Documents and Souce
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
