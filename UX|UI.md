@@ -36,7 +36,7 @@ After discussing the business goal and main requirement with the PO, we first re
 
 To achieve the business goal, the **Double Diamond Process Model** is applied as this model is not only focus on design elements but taking a holistic view to design a system that can be run technically and visually. The Double Diamond Process Model consists of four phases as follows:
 
-![image-20221118154658527](/Users/carol/Library/Application Support/typora-user-images/image-20221118154658527.png)
+![image](https://user-images.githubusercontent.com/72688726/202750746-7f4fdaa0-e139-4d0b-96a4-a78dfa0fb2b3.png)
 
 - **Discover:** 
   - Understand what is ontology; who are the key stakeholders, and how they will be affected by the ontology.
@@ -52,32 +52,17 @@ To achieve the business goal, the **Double Diamond Process Model** is applied as
 
 
 
-## 1. Discover
+## Discover
 
 
+### Assesment
+![image](https://user-images.githubusercontent.com/72688726/202750362-910b30d1-0b19-4c8f-be97-135e57bc4775.png)
 
-#### 1.1 Assesment
-
-![image-20221118154757358](/Users/carol/Library/Application Support/typora-user-images/image-20221118154757358.png)
-
-#### Competivie analysis
+### Competivie analysis
 
 We compared existing **Open Education Resource(OER)** platforms and media sharing platform : Medium, Google Scholar, MIT, Oercommons, BC campus and Europeana and made benchmarks on information architecture, navigation, search function, filters and search results to get ideas on how to restructure OPENEDU Website.
 
-![image-20221118154942765](/Users/carol/Library/Application Support/typora-user-images/image-20221118154942765.png)
-
-![image-20221118151723153](/Users/carol/Library/Application Support/typora-user-images/image-20221118151723153.png)
-
-
-
-![image-20221118151735405](/Users/carol/Library/Application Support/typora-user-images/image-20221118151735405.png)
-
-
-
-![image-20221118151747029](/Users/carol/Library/Application Support/typora-user-images/image-20221118151747029.png)
-
-![image-20221118151808705](/Users/carol/Library/Application Support/typora-user-images/image-20221118151808705.png)
-
+![image](https://user-images.githubusercontent.com/72688726/202750541-ecbbb974-80b0-48ef-8d3e-409a2e6165c6.png)
 
 
 ### Persona
@@ -88,13 +73,13 @@ In addition, we also create 2 persona to get better understanding how OPENEDU.CH
 
 
 
-### **User Jounrey and Interview**
+### User Jounrey and Interview
 
 We mapped out user journey based on the persona profile and designed eight open questions as follows:
 
 ![image-20221118155333373](/Users/carol/Library/Application Support/typora-user-images/image-20221118155333373.png)
 
-
+![user journey](https://user-images.githubusercontent.com/72688726/202751714-305e6a31-7289-43f4-971b-f001b223365c.png)
 
 **Usage of the educational platform**
 
@@ -121,7 +106,6 @@ we conducted user interviews with 5 potential users (one internal and 4 external
 - Users wishing to get in touch with other teachers and connect in a simple, easy way
 
 
-
 ## Define
 
 We collected ideas from team brainstorming, user interview and and competitive analysis, and we finally selected the most prominent features which are: **Search UI**, **Filters**, **Uploading Form**, and **Redesign Landing page** that are aligned with solution from our technical team, and be able to visualize in the final prototype
@@ -143,18 +127,16 @@ At this stage, we compiled potential solutions and we selected the most reasonab
 
 
 
-#### User Flow
+### User Flow
 
 After we define the key features, I designed the user flow of the search and file uploading process.
 
-![image-20221118151600076](/Users/carol/Library/Application Support/typora-user-images/image-20221118151600076.png)
+![image](https://user-images.githubusercontent.com/72688726/202749916-73034b7f-315f-48f3-9166-fe5b13cb128c.png)
 
-### Prototype
+
+## Visual Prototype
 
 Many users expect what they believe will interact with the product and service and therefore, making the website similar to their competitor can help users to easily navigate on the site without hesitating. In the design phase, we implemented the Mental model and design principle to reduce the cognitive loading on the web page and create pleasant experiences for the user, as well as help them to easily navigate on the website.
-
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FgRaDjSdaGjpapaVguTvRux%2FOpenEdu%3Fnode-id%3D5%253A22%26t%3DyiTU9HblL70df30C-1" allowfullscreen></iframe>
-
 
 
 - **Redesigning landing page**
@@ -177,8 +159,6 @@ In the sign up page, we want to collect more user basic information, not just th
 
 
 
-
-
 - **Uploading Pages**
 
 We make the uploading form simpler and divide the process into four steps, to make the user informed and know which section they are and be able to estimate how much time they need to complete this task.
@@ -192,10 +172,11 @@ We make the uploading form simpler and divide the process into four steps, to ma
 ![img](https://lh5.googleusercontent.com/LjMGt_eS6u5Xbl1SDVVL7BdjnDWFDR8KgUBP7YfC8VOw3_qka5Ce4tcT4G3SmPTwcaSb-wAQwnojY3PUBe7BLTonpNvYszzHP_Oterhp9feu9G3UpC7eAGCxZpulux2YvNKqNl5ELielakTC4-sl6mlISMcQCDOZ-QHrtJfYVpwETRpxuvXNFYhFpm85PqUP)
 
 
-
 ### Go to the Market
 
 Now that we had achieved the outcome. our team also design and pitch desk to support the launch of these exciting features that we have developed over the past six week.
+
+ - [Figma protopye](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=211%2C156%2C0.13&scaling=min-zoom&starting-point-node-id=5%3A22)
 
 ### Reflection
 
