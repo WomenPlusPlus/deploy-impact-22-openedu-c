@@ -29,7 +29,7 @@ We reversed the OPENEDU website and database to identify the initial problems as
 
 1. Usability: The user cannot find information, resources or educational materials on the website
 2. User experience: Information overloaded on the webpage creates cognitive loading to end users
-3. Value proposition: Unclear message, target audience and offers of the website
+3. Value proposition: Unclear message, unclear target audience and what the website offers
 
 
 Based on the project requirements and initial problems, we proposed three actionable solutions which are implemented within six weeks, the solutions are:
@@ -45,7 +45,7 @@ Based on the project requirements and initial problems, we proposed three action
   - get_similarities.py: the function is called from update_database(). It takes a dataframe containing all the text information of the project and uses an NLP model to calculate an n by n matrix that tells how similar the projects are.
   - semantic_search.py: this function takes a search string, computes its embedding, loads the project embeddings from the database, and returns the the projects that are related to the search-key.
 - [django_openedu:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/django_openedu) cotains the implementation of a Dummy UI to test the NLP search and related projects functions. The Dummy UI is programmed in django using python. It is connected to a PostgreSQL database running in Azure.
-- [doc:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/doc) Some documentation of our solution is given in this folder.
+- [doc:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/doc) Our description of the project, more documentation of the solution and summary. 
 
 # How to run and install the project
 All the final implementation of the project are written in python. The requirements.txt file contains the librarys needed for running our code.
