@@ -77,8 +77,6 @@ In addition, we also create 2 persona to get better understanding how OPENEDU.CH
 
 We mapped out user journey based on the persona profile and designed eight open questions as follows:
 
-![image-20221118155333373](/Users/carol/Library/Application Support/typora-user-images/image-20221118155333373.png)
-
 ![user journey](https://user-images.githubusercontent.com/72688726/202751714-305e6a31-7289-43f4-971b-f001b223365c.png)
 
 **Usage of the educational platform**
