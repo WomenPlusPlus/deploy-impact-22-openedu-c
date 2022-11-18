@@ -8,7 +8,22 @@ TODO: project description.
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
  - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
  - [Figma](https://www.figma.com/file/gRaDjSdaGjpapaVguTvRux/OpenEdu?node-id=5%3A22&t=FF9hq4vn9oFgGKFd-1): Visual Prototype
- 
+
+## Context and Main Challenge
+
+We reversed the OPENEDU website and database to identify the initial problems as follows:
+
+1. Usability: The user cannot find information, resources or educational materials on the website
+2. User experience: Information overloaded on the webpage creates cognitive loading to end users
+3. Value proposition: Unclear message, target audience and offers of the website
+
+
+Based on the project requirements and initial problems, we proposed three actionable solutions which are implemented within six weeks, the solutions are:
+
+1) Refine ontology, data model and data pipeline
+2) Search engine optimization with NLP approach 
+3) Visual Prototype: redesign landing page, result search page and upload form
+
 # File Structure
 - [NLP:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/NLP) This folder contains 4 python files used for related projects (similarity feature) and finding project that are related to a search-key (search feature).
   - update_database.py: updates the related projects in the database and pre-computes the project-embeddings used for search requests. The function update_database() that should be called everytime a projects in the database is modified or added. 
