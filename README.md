@@ -36,6 +36,6 @@ Based on the project requirements and initial problems, we proposed three action
 # How to run and install the project
 All the final implementation of the project are written in python. The requirements.txt file contains the librarys needed for running our code.
 
-To run the dummy UI: go into the django_openedu folder, where teh manage.py file recides, and run the command "python manage.py runserver"
+To run the dummy UI: go into the django_openedu folder, where the manage.py file recides, and run the command "python manage.py runserver"
 
 To update the database: go to the NLP folder and run update_database.py
