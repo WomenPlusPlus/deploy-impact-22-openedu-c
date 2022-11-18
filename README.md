@@ -21,7 +21,6 @@ In order to maximize the user experience and provide them with an easy to use pl
 # Additional Documents and Souce
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
  - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
- - [Figma](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=-43%2C-199%2C0.13&scaling=scale-down-width&starting-point-node-id=5%3A22): Visual Prototype
  - [Presentation](https://www.canva.com/design/DAFRclqQvVc/WA8bONken9AouR8n8UpdqQ/view?utm_content=DAFRclqQvVc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink): A canva link for viewing our pitch presentation
 
 ## Context and Main Challenge
@@ -46,6 +45,7 @@ Based on the project requirements and initial problems, we proposed three action
   - get_similarities.py: the function is called from update_database(). It takes a dataframe containing all the text information of the project and uses an NLP model to calculate an n by n matrix that tells how similar the projects are.
   - semantic_search.py: this function takes a search string, computes its embedding, loads the project embeddings from the database, and returns the the projects that are related to the search-key.
 - [django_openedu:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/django_openedu) cotains the implementation of a Dummy UI to test the NLP search and related projects functions. The Dummy UI is programmed in django using python. It is connected to a PostgreSQL database running in Azure.
+- [UX|UI:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/blob/main/UX%7CUI.md) documents design process of the visual prototype
 - [doc:](https://github.com/WomenPlusPlus/deploy-impact-22-openedu-c/tree/main/doc) Our description of the project, more documentation of the solution and summary. 
 
 # How to run and install the project
@@ -54,3 +54,11 @@ All the final implementation of the project are written in python. The requireme
 To run the dummy UI: go into the django_openedu folder, where the manage.py file recides, and run the command "python manage.py runserver"
 
 To update the database: go to the NLP folder and run update_database.py
+
+# Visual Prototype
+There are three main features you can test:
+1. Search bar: try to entry "scie" and click science competetion to see the search result
+2. Explore: click the link button to visit resouce page
+3. Filters: a list of dropdown menu that user can interacte with
+4. sign up and uploading form: once you click sign up, it will guide you through the sign up and add file processes
+ - [Figma](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=-43%2C-199%2C0.13&scaling=scale-down-width&starting-point-node-id=5%3A22)
