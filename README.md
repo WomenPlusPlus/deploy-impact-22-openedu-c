@@ -20,7 +20,7 @@ In order to maximize the user experience and provide them with an easy to use pl
 
 # Additional Documents and Souce
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
- - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
+ - [Miro Board](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
  - [Presentation](https://www.canva.com/design/DAFRclqQvVc/WA8bONken9AouR8n8UpdqQ/view?utm_content=DAFRclqQvVc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink): Our pitch presentation you can view in Canva or [Google Drive](https://docs.google.com/presentation/d/1YGaBBD5dSjZfEWSn8VzBD_vT51LJrYkO/edit?usp=share_link&ouid=113270707159335923135&rtpof=true&sd=true)
 
 ## Context and Main Challenge
