@@ -19,21 +19,7 @@ Considering the main challenges in this project, usanility, user expereince and 
 
 
 ### The Process
-
-After discussing the business goal and main requirement with the PO, we first reversed the existing website based on four criteria: design, structure, functionality and value to identify initial problems, then we gathered each member's feedback and extract key information to form user interview:
-
-1. The context: In what situation educators would visit an educational resource platform
-
-2. Behaviour: What do educators look for when visiting educational resource platforms
-
-3. Motivation: What is the motivation for using an educational resource platform
-
-4. Expatriation: What product/ service do you expect to see on an educational resource platform 
-
-5. User Engagement: What is the motivation for engaging with other users on an educational resource platform 
-
    
-
 To achieve the business goal, the **Double Diamond Process Model** is applied as this model is not only focus on design elements but taking a holistic view to design a system that can be run technically and visually. The Double Diamond Process Model consists of four phases as follows:
 
 ![image](https://user-images.githubusercontent.com/72688726/202750746-7f4fdaa0-e139-4d0b-96a4-a78dfa0fb2b3.png)
@@ -49,7 +35,6 @@ To achieve the business goal, the **Double Diamond Process Model** is applied as
   - Refine ontology, data model and data pipeline
   - Search engine optimization with NLP approach 
   - Visual Prototype: redesign landing page, result search page and upload form
-
 
 
 ## Discover
@@ -75,7 +60,19 @@ In addition, we also create 2 persona to get better understanding how OPENEDU.CH
 
 ### User Jounrey and Interview
 
-We mapped out user journey based on the persona profile and designed eight open questions as follows:
+We reversed the existing website based on four criteria: design, structure, functionality and value to identify initial issues, then we gathered each member's feedback and extract key information to form user scenario:
+
+1. The context: In what situation educators would visit an educational resource platform
+
+2. Behaviour: What do educators look for when visiting educational resource platforms
+
+3. Motivation: What is the motivation for using an educational resource platform
+
+4. Expatriation: What product/ service do you expect to see on an educational resource platform 
+
+5. User Engagement: What is the motivation for engaging with other users on an educational resource platform 
+
+In order to gain more insights from the users, we mapped out user journey of our persona and user scenario to designed eight open questions for the user interview:
 
 ![user journey](https://user-images.githubusercontent.com/72688726/202751714-305e6a31-7289-43f4-971b-f001b223365c.png)
 
