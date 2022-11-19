@@ -21,7 +21,7 @@ In order to maximize the user experience and provide them with an easy to use pl
 # Additional Documents and Souce
  - [Team Board](https://miro.com/app/board/uXjVPO_hDiA=/): A Miro board where team share and organize thoughts and ideas
  - [Miro Borad](https://miro.com/app/board/uXjVPRForEg=/): Weekly Retrospective
- - [Presentation](https://www.canva.com/design/DAFRclqQvVc/WA8bONken9AouR8n8UpdqQ/view?utm_content=DAFRclqQvVc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink): A canva link for viewing our pitch presentation
+ - [Presentation](https://www.canva.com/design/DAFRclqQvVc/WA8bONken9AouR8n8UpdqQ/view?utm_content=DAFRclqQvVc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink): Our pitch presentation you can view in Canva or [Google Drive](https://docs.google.com/presentation/d/1YGaBBD5dSjZfEWSn8VzBD_vT51LJrYkO/edit?usp=share_link&ouid=113270707159335923135&rtpof=true&sd=true)
 
 ## Context and Main Challenge
 
@@ -55,10 +55,9 @@ To run the dummy UI: go into the django_openedu folder, where the manage.py file
 
 To update the database: go to the NLP folder and run update_database.py
 
-# Visual Prototype
+# Website Prototype
+ - [Visual Prototype:](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=-43%2C-199%2C0.13&scaling=scale-down-width&starting-point-node-id=5%3A22) a Figma file where you can interact with the website prototype
 There are three main features you can test:
 1. Search bar: try to entry "scie" and click science competetion to see the search result
-2. Explore: click the link button to visit resouce page
-3. Filters: a list of dropdown menu that user can interacte with
-4. sign up and uploading form: once you click sign up, it will guide you through the sign up and add file processes
- - [Figma](https://www.figma.com/proto/gRaDjSdaGjpapaVguTvRux/OpenEdu?page-id=0%3A1&node-id=5%3A22&viewport=-43%2C-199%2C0.13&scaling=scale-down-width&starting-point-node-id=5%3A22)
+2. Filters: a list of dropdown menu that user can interacte with
+3. Sign up and uploading form: once you click sign up, it will guide you through the sign up and add file processes
