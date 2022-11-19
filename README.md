@@ -1,6 +1,8 @@
 # deploy-impact-22-openedu-c
 Repository for Team openedu-c for deploy(impact) 2022
 
+Contact person for Wikimedia: danielapavia@gmail.com
+
 # Project Description
 OpenEdu is an open education platform launched in 2020 by wikimedia CH.  
 Open education platforms allow their users to edit and integrate projects, training tools and news from the world of open education. The goal of the platform is to help educators in the orientation towards finding inspiration for new teaching methodologies or professional updating.
