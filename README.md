@@ -1,7 +1,9 @@
 # deploy-impact-22-openedu-c
 Repository for Team openedu-c for deploy(impact) 2022
 
-Contact person for Wikimedia: danielapavia@gmail.com
+Contact person for Wikimedia: 
+danielapavia@gmail.com  (technical part)
+iwona.braun@gmail.com (project management part)
 
 # Project Description
 OpenEdu is an open education platform launched in 2020 by wikimedia CH.  
