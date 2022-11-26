@@ -8,7 +8,8 @@
 
 Considering the main challenges in this project, usanility, user expereince and value propostion are the main objectives we want to sovle within the project timeline. In this document, User Experience and User Interface will be addressed based on our pre define challeges.
 
-
+## Author
+[Carol Hsu](https://github.com/hsuwanying)
 
 ## Overview
 
@@ -175,6 +176,6 @@ Now that we had achieved the outcome. our team also design and pitch desk to sup
 
 ### Reflection
 
-The purpose for this project is to provide tangible and actionable solutions for the client, although the redesign website was not required by the people, we believe having a website prototype that can visualize our solution in a feasible way is more convincing when pitching our idea, There were some flaws in the process and improvement that need to be addressed accordingly based on the data collection in the future development. 
+The purpose for this project is to provide tangible and actionable solutions for the client, although the redesign website was not required by the organization, we believe having a website prototype that can visualize our solution in a feasible way is more convincing when pitching our idea, There were some flaws in the process and improvement that need to be addressed accordingly based on the data collection in the future development. 
 
 
